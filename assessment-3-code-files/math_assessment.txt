@@ -1,0 +1,77 @@
+** Probability **
+
+1. The bias of a coin is 0.6 in favor of heads. What is the probability of flipping
+8 or more heads in 10 flips?
+
+10c8 (.6)^8(.4)^2 + 10c9 (.6)^9(.4)) + (.6)^10
+
+
+2. You've found a secret admirer note on your desk, and don't know
+who it might've come from but you know it must've been one of your
+three office mates:  Jack, John, or Jimmy.
+- As of yesterday, you thought it was twice as likely that Jimmy had a crush on you than John,
+and that John and Jack were equally likely to have a crush on you.
+- However even if Jimmy liked you, you think there'd only be 5% he'd leave you a note.
+- On the other hand, if Jack liked you there'd be a whopping 50% chance he'd leave you a note.
+and if John liked you, there'd be a 20% chance he'd leave you a note.
+
+What's the probability that the note came from John?
+
+prob note from john/ tot probs
+.2*.25/(.2*.25+.05*.5+.25*.5)=.25
+
+** Statistics **
+
+Below are the total number of log-ins for 20 different randomly selected users from 2014:
+    [10, 25, 12, 35, 14, 18, 16, 15, 22, 10, 9, 11, 49, 20, 15, 9, 18, 19, 20, 20]
+
+3. What is the sample mean?
+18.350000000000001
+
+4. What is the sample variance?
+91.502631578947373 (with ddof =1)
+
+5. If we randomly select another user from 2014, what is the probability that he/she
+has more than 15 log-ins?
+
+
+
+6. Sales targets weren't met last year.  The sales department asserts that on average,
+there were only 10 log-ins per user, however the web team thinks there were more.
+Set up a frequentist hypothesis test and compute a p-value based on your data.
+Ho = mu<=10
+Ha = mu>10
+
+19 degrees of freedom
+t score = (10 - mean)/(s/sqrt(n)) = -3.9037741247726232
+t value = .000481
+
+
+7. A major charity organization is interested to see if changing the mission
+statement on the website increases donations. As a pilot study, they randomly
+show 1 of 10 newly drawn up mission statements to each user that comes to the site.
+As such, you set up 10 separate hypothesis tests, each testing whether or not
+there was an increase in donations. What adjustments would you make to account for the 10 tests?
+
+You will have to adjust your threshold/alpha (alpha/10)
+
+
+**  Modeling **
+
+8.  Generally, when we increase the flexiblity or complexity of the model, what happens to bias?  What about variance?
+What do we expect to happen to the training error?  What about the test error?
+
+As complexity increases our bias will decrease as our variance increases.
+Our training error will decrease as we approach overfitting the model but our testing error will increase.
+
+
+9.  You have two models:
+Model 1:   Salary ~ Occupation + Height + Gender
+Model 2:   Salary ~ Occupation + Region + Height + Gender
+
+Name 2 appropriate ways to compare these two models.
+Name 1 inappropriate way to compare these two models.
+
+test them against a data set you split into model data and test data and see how the rmse compare. Or better do a k-fold test and do use the cross val score.
+
+Do a regression fit to them and compare R^2 using same data for fit and test.
