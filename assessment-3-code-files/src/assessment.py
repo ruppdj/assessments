@@ -24,16 +24,15 @@ def roll_the_dice():
     or greater than 7.
     '''
     win=0.0
-    loss=0.0
-    for i in xrange(100000):
+
+    rep= 1000
+    for i in xrange(rep):
         tot= np.random.randint(1,6)+np.random.randint(1,6)
-        if tot>7:
+
+        if tot % 2 == 0 or tot > 7:
             win+=1
-        elif tot%2==0:
-            win+=1
-        else:
-            loss+=1
-    return win/(float(win)+float(loss))
+
+    return win/(float(rep))
 
 
 # A/B Testing
@@ -49,7 +48,16 @@ def calculate_clickthrough_prob(clicks_A, views_A, clicks_B, views_B):
     Hint: Use Bayesian A/B Testing (multi-armed-bandit repo)
     '''
 
-    pass
+    samp = 10000
+    Aa = clicks_A + 1
+    Ab = clicks_B + 1
+    Ba = views_A - clicks_A + 1
+    Bb = views_B - clicks_B + 1
+
+    A_prob = beta_dist(Aa, Ba, samp)
+    B_prob = beta_dist(Ab, Bb, samp)
+
+    return np.sum(A_prob > B_prob)/float(samp)
 
 
 # Statistics
@@ -64,10 +72,8 @@ def calculate_t_test(sample1, sample2, type_I_error_rate):
     Return a tuple containing the p-value for the pair of samples and True or
     False depending if the p-value is considered significant at the provided Type I Error Rate.
     '''
-    p = st.ttest_rel(sampel1,sample2)
-    if p[1]<type_I_error_rate:
-        return (True,p[1])
-    return (False,p[1])
+    test = st.ttest_ind(sample1,sample2)
+    return test[1],test[1]<type_I_error_rate
     pass
 
 
@@ -84,8 +90,9 @@ def pandas_query(df):
     Return the DataFrame containing the average size of the university for each
     type ordered by size in ascending order.
     '''
-
-    pass
+    df1 = df.groupby(by='Type')['Size'].mean()
+    df1.sort()
+    return df1
 
 
 def df_to_numpy(df, y_column):
@@ -104,7 +111,10 @@ def df_to_numpy(df, y_column):
 
         output: [[1, 3], [2, 4]],   [5, 6]
     '''
-    pass
+    ## per answers need to copy
+    ## dumb = df.copy()
+    y = df.pop(y_column)
+    return np.array(df),np.array(y)
 
 
 def only_positive(arr):
@@ -120,7 +130,7 @@ def only_positive(arr):
 
     DO NOT use a for loop.
     '''
-    return arr[(arr.apply(lambda x: x.str[0].astype(int))).lt(0).any(axis=1)]
+    return arr[arr.min(axis=1)>=0]
     pass
 
 
@@ -135,7 +145,7 @@ def add_column(arr, col):
     E.g.  [[1, 2], [3, 4]], [5, 6]  ->  [[1, 2, 5], [3, 4, 6]]
     '''
 
-    return np.append(arr,col,1)
+    return np.concatenate((arr, col.reshape((-1,1))), axis = 1)
     pass
 
 
@@ -151,10 +161,11 @@ def size_of_multiply(A, B):
 
     If A and B cannot be multiplied, return None.
     '''
+    '''In brodcasting in 2 dmentions the important thing is if the columns for A matches the rows for B '''
 
-    pass
-
-
+    if A.shape[1] == B.shape[0]:
+        return A.shape[0], B.shape[1]
+    return None
 # Linear Regression
 
 def linear_regression(X_train, y_train, X_test, y_test):
@@ -168,13 +179,11 @@ def linear_regression(X_train, y_train, X_test, y_test):
     Return a tuple of the coefficients and the R^2 value. Should be in this form:
     (12.3, 9.5), 0.567
     '''
-    X_data = preprocessing.scale(X_train)
-    scaler = preprocessing.StandardScaler().fit(X_train)
-    X_test_scaled = scaler.transform(X_test)
-    fit = LinearRegression(alpha=a, normalize=True).fit(X_data, y_train)
-    y_predict_test = fit.predict(X_test_scaled)
-    return (fit.coef_,)
+    model = LinearRegression(fit_intercept=True, normalize=False)
+    model.fit(X_train, y_train)
 
+    return (model.coef_,model.score(X_test, y_test))
+    pass
 
 # SQL
 
@@ -194,6 +203,7 @@ def sql_query():
     in ascending order.
     Columns should be: type, avg_size
     '''
+    return '''SELECT type, AVG(size) as s from universities GROUP BY type ORDER BY s;'''
     # Your code should look like this:
     # return '''SELECT * FROM universities;'''
     pass
