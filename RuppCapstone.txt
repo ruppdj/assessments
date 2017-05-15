@@ -1,0 +1,21 @@
+Dan Rupp Proposals
+
+1) Wasserstrom project.
+    I have the order data from the sales of restaurant supplies from their distribution facilities.
+    Goal:
+    Identify patterns and see if you can build a model to predict what will happen in future periods, find which customers cause the most variation to ordering patterns, and determine how you protect ability to service these customers at high fill rates without overstock of inventory.
+
+    Final project would be a slide show of results of the fit models for prediction.
+
+    I would need to get the rest of the data as I currently only have 1 year for one distribution center.
+
+
+2) Guide changes
+    Use different methods to cluster data looking for groupings that may represent fraud. Given the data size there will be multiple ways to compare and group the data.  I am still unsure I would be able to give any different information on the success of this but should be able to find trends that would require more investigation.
+
+    I am currently in contact with Michael and still gathering more information.
+
+3) AI Atari game player
+     Use neural network to learn to play atari games.
+
+     Deep Reinforcement Learning structures.
