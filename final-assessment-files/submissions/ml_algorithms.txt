@@ -1,0 +1,37 @@
+1)
+
+2)
+
+3)  a) Bias is how closely the model fits the sample data
+    Variance
+    b) As we overfit the Bias shrinks as we start to move the model to more closely follow the given data.  This increases the Variance as new data points will most likely not fig closely to the model.
+    c) Under fitting has the reverse, bias will be high as the model will not fit as closely to the training data but variance will be lower
+    d) Ridge and Lasso allow us to find unimportant features allowing us to create a simpler models which should balance variance and bias
+
+4) SVM with could work well as there is a good separation of groups.
+
+5)501 blue and 530 red
+    a)  sum(fi(1-fi)) or
+
+6)  a) As it takes a mean of the output of many trees to mildly improve variance
+    b) Random Forest cuts down on over fitting it improves variance by reducing the correlation. This is in part due to the fact that the trees created in random are forced to be different from one model to the next by the restriction of features to model at each node.
+    c) Boosting looks at results of model fits to improve on the parts that where wrong.  Random forest works independently of the modeling so it can be run in parallel.  Boosting 'usually' only looks at stumps when applied to trees
+
+
+7)
+
+8)  KNN and K-means both are done by calculating distances from one point to another.  As dimensionality increases the distances increase dramatically and what one classifies as 'Close' becomes harder to distinguish.
+
+9)  It assumes that the value of a feature is independent of the value of anyother feature (no correlation)
+
+10) Linear regression Logistic Regression Lasso/Ridge - should be scaled to minimize the effects of outliers
+
+PCA
+
+k-Means kNN - Should be scaled to minimize outliers being misclassified
+
+SVM - should be scaled to minimize the effects of outliers
+
+Decision Tree/Random Forest - Does not need scaling as every feature is evaluated independently.
+
+Boosting

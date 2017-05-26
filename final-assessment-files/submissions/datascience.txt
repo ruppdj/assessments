@@ -1,0 +1,29 @@
+1)  prob of getting 6 with fair die = 1/6 prob with unfair 3/6
+  prob of die fair (1/6) / ((1/6)+(3/6))  = 25%
+
+2) a)
+
+   b) I  am using the poisson model
+
+3)
+
+
+4) Yes we can.  A has a 16.8% conversion B has 24.2%.  The P value for the null hypothesis HavgB <= HavgA is .0007 with a z score of 3.181 allowing us to reject the null and say B is better.
+
+5)  A linear regression model should fit the data relatively well. Cross validation with RMSE
+
+6)  The model starts to overfit on the training data.  The best choice seems to be between 6 and 8 for complexity. 6 looks to be the overall best fit.
+
+7) a) classify all emails as non-spam
+
+  b) As import as accuracy we would need to look at a matrix to see what the bias is.  It is more important to allow a non spam email get through than stop a spam email.  So we need the Power and Bias
+
+8) In pandas start with .info() to see if the column is in proper format(int, float, datetime).  Look at the .unique() and see what there is. non type rows, huge number(to long to be real)
+
+9)  a)  Black
+    b)  red
+    c)  1)  The red model with a high threshold (at least around .3 given graph) as we want to minimize the false positive rate as we do not want to give non sick people chemo
+        2) Black at or below .1 threshold to minimize false negatives.
+
+    d)
+        for low false positive rate I would say email 
