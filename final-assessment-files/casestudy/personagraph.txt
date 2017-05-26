@@ -1,0 +1,11 @@
+1) I created a Class to contain the feature extraction and model to more easily change it around. Starting with a TF-IDF and MultinomialNB model.
+I used the default settings except for using stop_words='english' on the TF-IDF.
+  TF-IDF and MultinomialNB 91%
+  Count Vect and MultinomialNB  96%
+  Count Vect and  BernoulliNB  96%
+  BernoulliNB with TF-IDF = 96%
+
+
+I used train test split to test my results.
+
+In the end I would want to do some pram tuning before deciding on the best but off the shelf i would choose the BernoulliNB with the CountVectorizer as it gave more consistent results.
